@@ -19,4 +19,15 @@
     <tbody>
         <tr th:each="contact : ${contacts}">
             <td th:text="${contact.id}"></td>
-            <td th:text="${contact.fullName}"></td
+            <td th:text="${contact.fullName}">
+            </td<td th:text="${contact.phoneNumber}"></td>
+            <td th:text="${contact.note}"></td>
+            <td>
+                <a th:href="@{/contacts/edit/{id}(id=${contact.id})}">Редактировать</a>
+                <a th:href="@{/contacts/delete/{id}(id=${contact.id})}">Удалить</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

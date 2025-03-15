@@ -1,1 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактировать контакт</title>
+</head>
+<body>
+<h1>Редактировать контакт</h1>
+<form th:action="@{/contacts/edit/{id}(id=${contact.id})}" th:object="${contact}" method="post">
+    <label for="fullName">ФИО:</label>
+    <input type="text" id="fullName" th:field="*{fullName}" required/>
 
+    <label for="phoneNumber">Телефон:</label>
+    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" required/>
+
+    <label for="note">Заметка:</label>
+    <input type="text" id="note" th:field="*{note}"/>
+
+    <button type="submit">Сохранить</button>
+</form>
+<a href="/contacts">Назад</a>
+</body>
+</html>

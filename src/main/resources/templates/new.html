@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Добавить контакт</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Добавить контакт</h1>
-<form th:action="@{/contacts}" th:object="${contact}" method="post">
-    <label for="fullName">ФИО:</label>
-    <input type="text" id="fullName" th:field="*{fullName}" required/>
+<div class="container">
+    <h1>Добавить новый контакт</h1>
 
-    <label for="phoneNumber">Телефон:</label>
-    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" required/>
+    <form id="contactForm" th:action="@{/contacts}" method="post" th:object="${contact}">
+        <div class="form-group">
+            <label for="fullName">ФИО:</label>
+            <input type="text" id="fullName" th:field="*{fullName}" class="form-control" required/>
+            <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger"></div>
+        </div>
 
-    <label for="note">Заметка:</label>
-    <input type="text" id="note" th:field="*{note}"/>
+        <div class="form-group">
+            <label for="phoneNumber">Телефон:</label>
+            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" required/>
+            <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></div>
+        </div>
 
-    <button type="submit">Сохранить</button>
-</form>
-<a href="/contacts">Назад</a>
+        <div class="form-group">
+            <label for="note">Заметка:</label>
+            <textarea id="note" th:field="*{note}" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/contacts" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
 </body>
 </html>

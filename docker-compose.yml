@@ -2,9 +2,10 @@ version: '3.8'
 services:
   app:
     build: .
-    ports:
-      - "8080:8080"
+   ports:
+      - "5000:5000"
     environment:
+      - FLASK_ENV=development
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/phonebook
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres

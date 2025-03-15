@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 @Entity
 public class Contact {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq_gen")
+    @SequenceGenerator(name = "contact_seq_gen", sequenceName = "contact_seq", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)

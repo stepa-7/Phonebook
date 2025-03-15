@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("message", "Добро пожаловать в телефонную книгу!");
-        return "index"; // имя шаблона (index.html)
+    public String index() {
+        return "redirect:/contacts"; // Редирект на страницу с контактами
     }
 }

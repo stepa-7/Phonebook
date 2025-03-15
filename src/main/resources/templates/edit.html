@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Редактировать контакт</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Редактировать контакт</h1>
-<form th:action="@{/contacts/edit/{id}(id=${contact.id})}" th:object="${contact}" method="post">
-    <label for="fullName">ФИО:</label>
-    <input type="text" id="fullName" th:field="*{fullName}" required/>
+<div class="container">
+    <h1>Редактировать контакт</h1>
 
-    <label for="phoneNumber">Телефон:</label>
-    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" required/>
+    <form id="editContactForm" th:action="@{/contacts/{id}(id=${contact.id})}" method="post" th:object="${contact}">
+        <div class="form-group">
+            <label for="fullName">ФИО:</label>
+            <input type="text" id="fullName" th:field="*{fullName}" class="form-control" required/>
+            <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger"></div>
+        </div>
 
-    <label for="note">Заметка:</label>
-    <input type="text" id="note" th:field="*{note}"/>
-
-    <button type="submit">Сохранить</button>
-</form>
-<a href="/contacts">Назад</a>
-</body>
-</html>
+        <div class="form-group">
+            <label for="phoneNumber">Телефон:</label>
+            <input type="text" id="phoneNumber" th

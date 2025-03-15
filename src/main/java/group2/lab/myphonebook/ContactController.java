@@ -25,11 +25,6 @@ public class ContactController {
 
     @GetMapping("/new")
     public String newContactForm(Model model) {
-        if (result.hasErrors()) {
-        return "contacts/new"; 
-    }
-    contactRepository.save(contact);
-    return "redirect:/contacts";
         model.addAttribute("contact", new Contact());
         return "new"; // Было "templates/new"
     }

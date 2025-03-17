@@ -25,31 +25,31 @@ class MyPhonebookApplicationTests {
 
     @Test
     void addContact() {
-        Contact contact = new Contact(null, "John Doe", "1234567890", "Test Note");
+        Contact contact = new Contact(null, "John Doe", "12345678900", "Test Note");
         Contact savedContact = contactService.addContact(contact);
         assertNotNull(savedContact.getId());
         assertEquals("John Doe", savedContact.getFullName());
-        assertEquals("1234567890", savedContact.getPhoneNumber());
+        assertEquals("12345678900", savedContact.getPhoneNumber());
         assertEquals("Test Note", savedContact.getNote());
     }
 
     @Test
     void updateContact() {
-        Contact contact = new Contact(null, "John Doe", "1234567890", "Test Note");
+        Contact contact = new Contact(null, "John Doe", "12345678900", "Test Note");
         Contact savedContact = contactService.addContact(contact);
         savedContact.setFullName("Jane Doe");
-        savedContact.setPhoneNumber("9876543210");
+        savedContact.setPhoneNumber("98765432100");
         savedContact.setNote("Updated Note");
         Contact updatedContact = contactService.addContact(savedContact);
         assertEquals("Jane Doe", updatedContact.getFullName());
-        assertEquals("9876543210", updatedContact.getPhoneNumber());
+        assertEquals("98765432100", updatedContact.getPhoneNumber());
         assertEquals("Updated Note", updatedContact.getNote());
     }
 
     @Test
     void deleteContact() {
         int count = contactService.getAllContacts().size();
-        Contact contact = new Contact(null, "John Doe", "1234567890", "Test Note");
+        Contact contact = new Contact(null, "John Doe", "12345678900", "Test Note");
         Contact savedContact = contactService.addContact(contact);
         contactService.deleteContact(savedContact.getId());
         assertEquals(count, contactService.getAllContacts().size());
@@ -57,11 +57,11 @@ class MyPhonebookApplicationTests {
 
     @Test
     void getContact() {
-        Contact contact = new Contact(null, "John Doe", "1234567890", "Test Note");
+        Contact contact = new Contact(null, "John Doe", "12345678900", "Test Note");
         Contact savedContact = contactService.addContact(contact);
         Optional<Contact> retrievedContact = contactService.getContact(savedContact.getId());
         assertEquals("John Doe", retrievedContact.get().getFullName());
-        assertEquals("1234567890", retrievedContact.get().getPhoneNumber());
+        assertEquals("12345678900", retrievedContact.get().getPhoneNumber());
         assertEquals("Test Note", retrievedContact.get().getNote());
     }
 }

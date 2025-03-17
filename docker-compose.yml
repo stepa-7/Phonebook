@@ -2,13 +2,12 @@ version: '3.8'
 services:
   app:
     build: .
-   ports:
-      - "5000:5000"
+    ports:
+      - "8080:8080"
     environment:
-      - FLASK_ENV=development
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/phonebook
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_USERNAME: phonebook_user
+      SPRING_DATASOURCE_PASSWORD: phonebook_password
     depends_on:
       - db
 
@@ -16,11 +15,13 @@ services:
     image: postgres:latest
     environment:
       POSTGRES_DB: phonebook
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: phonebook_user
+      POSTGRES_PASSWORD: phonebook_password
     ports:
       - "5432:5432"
-
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d
   pgadmin:
     image: dpage/pgadmin4
     environment:

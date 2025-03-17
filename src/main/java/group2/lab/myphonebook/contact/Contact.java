@@ -1,6 +1,8 @@
 package group2.lab.myphonebook.contact;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Contact {
@@ -10,9 +12,12 @@ public class Contact {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "ФИО обязательно")
     private String fullName;
 
     @Column(nullable = false)
+    @NotBlank(message = "Телефон обязателен")
+    @Pattern(regexp = "\\d{11}", message = "Телефон должен состоять ровно из 11 цифр без пробелов и спецсимволов")
     private String phoneNumber;
     private String note;
 
